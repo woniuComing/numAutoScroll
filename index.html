@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery数字滚动增加动画特效</title>
+    <style>
+        #all {
+            width: 100%;
+            margin: 0 auto;
+            background: #ffffff;
+        }
+        
+        #all .t_num i {
+            width: 33px;
+            height: 47px;
+            display: inline-block;
+            background: url(img/number1.png) no-repeat;
+            background-position: 0 0;
+            transition: all 0.5s linear;
+        }
+    </style>
+
+    <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/digitalScroll.js"></script> -->
+    <script type="text/javascript">
+        var sum = 500;
+
+        // $(function() {
+        // setInterval(function() {
+        //     show_num1(sum)
+        // }, 1000);
+        window.onload = function() {
+            setInterval(function() {
+                show_num1(sum)
+            }, 1000);
+            // setTimeout(() => {
+            //     show_num1(1500)
+            // }, 2000);
+            // setTimeout(() => {
+            //     show_num1(300)
+            // }, 4000);
+        }
+
+
+        // });
+
+        function show_num1(n) {
+            sum = sum + 5;
+            var numWrap = document.querySelector('.t_num1');
+            // numWrap.innerHTML = '';  //清空可以实现数字减少，但是没有滚动动画了；
+            var it = document.querySelectorAll('.t_num1 i');
+            var len = String(n).length;
+            for (var i = 0; i < len; i++) {
+                if (it.length <= i) {
+                    var iNode = document.createElement('i');
+                    numWrap.appendChild(iNode);
+                }
+                var num = String(n).charAt(i);
+                //根据数字图片的高度设置相应的值
+                var y = -parseInt(num) * 58;
+                var obj = document.querySelectorAll("#all .t_num1 i")[i];
+                obj.style.backgroundPosition = '0 ' + String(y) + 'px'
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="all">
+        <span class="t_num t_num1"></span>
+    </div>
+
+</body>
+
+</html>
